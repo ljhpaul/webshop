@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD Xhtml 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<style>
+		body{
+			font-size:9pt;	
+		}
+		
+		div{
+			border: 1px solid #999999;
+			margin:20px;
+			margin-bottom:20px;
+		}
+		div div{
+			border: 1px dotted #CCC;
+			font-size:20px;	
+		}
+		
+	</style>
+	<script>
+  		window.onload=function(){
+  			alert("1~~");
+  			/* var alert = 100;
+  			alert("2~~"); */
+  			
+  			//예외발생시 프로그램 중지됨
+  			//예외처리를 하면 프로그램 계속 진행됨
+  			try {
+  				var arr = new Array(999999999999999999999999999999999999);	
+  			} catch(ex) {
+  				console.log("예외 발생 : " + ex.message);
+  			} finally {
+  				console.log("반드시 실행");
+  			}
+  			
+  			
+			var imgPath = document.querySelector("#img1").src;
+			var imgNum = 1;
+			setInterval(()=>{
+				if(++imgNum > 10) {
+					imgNum = 1;
+				}
+				imgPath = "images/img" + imgNum +".jpg";
+				document.querySelector("#img1").src = imgPath;
+			}, 200);
+			
+			
+		}
+		
+ 		/* window.onload=function(){ setInterval(()=>{ document.querySelector("#img1").src = "images/img" + ((setInterval.i = (setInterval.i || 1) % 10 + 1)) +".jpg"; }, 200); }; */
+	</script> 
+
+</head>
+
+<body>	
+	<div> 
+		<h4>미션3 - 1초에 한번씩 이미지를 순차적으로 변환시켜 주세요.<br> 단, 이미지는 9개가 있습니다. 9개까지 출력된 경우, 다시 첫번째 이미지부터 출력시켜주세요.</h4>
+		<div id="panel">
+			<img id="img1" src="images/img1.jpg" alt="이미지">
+		</div>
+	</div>   
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>vmin vs vmax 연습</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: sans-serif;
+      background: #f9f9f9;
+    }
+
+    .box {
+      display: inline-block;
+      padding: 2rem;
+      margin: 1rem;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    .vmin-box {
+      background-color: #4CAF50;
+      width: 20vmin;
+      height: 20vmin;
+      font-size: 2vmin;
+    }
+
+    .vmax-box {
+      background-color: #2196F3;
+      width: 20vmax;
+      height: 20vmax;
+      font-size: 2vmax;
+    }
+
+    .compare {
+      margin-top: 3rem;
+      font-size: 2vmin;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>📐 vmin vs vmax 비교</h1>
+
+  <div class="box vmin-box">
+    vmin(최소크기)은 커졌을때<br>
+    이보다 더 커질수없다 <br>
+    20vmin 크기<br>      
+  </div>
+
+  <div class="box vmax-box">
+    vmax(최대크기)은 작아졌을때<br>
+    이보다 더 작아질수 없다<br>
+    20vmax 크기<br>
+    
+  </div>
+
+  <div class="compare">
+    👉 창을 줄이거나 늘려보세요. <br>
+    <strong>vmin:</strong> 화면의 "작은 쪽" 기준<br>
+    <strong>vmax:</strong> 화면의 "큰 쪽" 기준
+  </div>
+</body>
+</html>

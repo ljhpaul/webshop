@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+  <div id="container">
+    <h1>자바스크립트 test</h1>
+    <button id="btn1" class="btn btn-primary">변수의 범위1</button>
+    <button class="btn btn-secondary">변수의 범위2</button>
+    <button class="btn btn-success">합계 구하기</button>
+    <button onclick="call4();" class="btn btn-success">호이스팅</button>
+    <button id="btn2" class="btn btn-info">함수선언과 사용</button>
+    <button id="btn3" class="btn btn-warning">선언적함수와 익명함수1</button>
+    <button id="btn4" class="btn btn-warning">선언적함수와 익명함수2</button>
+  </div>
+  <hr>
+  <div id="here">
+    
+  </div>
+<script>
+	var b2 = document.querySelector("#btn2");
+	b2.onclick = function() {
+		let num1 = 10;
+		let num2 = 20;
+		let result = call7(num1, num2);
+		here.innerHTML += num1 + " + " + num2 + " = " + result;
+	};
+	
+	function call7(a, b) {
+		here.innerHTML += "<br> 함수사용결과: ";
+		return (a + b);
+	}
+</script>
+<script>
+	//1.선언적함수 : 이름이 있는 함수
+	function f3() {}
+	
+	//2.익명함수 : 이름이 없는 함수
+	btn3.onclick = function() {
+		here.innerHTML += "<br>" + this.innerHTML;	//this = btn3
+	}
+	var f3_2 = function() {	//리터럴 방식: 익명함수를 변수에 할당!
+		here.innerHTML += "<br>" + this.innerHTML;
+	};	//변수 선언이라 ';' 붙여야 함
+	var f3_2 = () => { here.innerHTML += "<br>" + this.innerHTML; };
+	
+	var f3_3 = function(a, b) {
+		var c = a + b;
+		console.log(c);
+		return c;
+	};
+	var f3_3 = (a, b) => {
+		var c = a + b;
+		console.log(c);
+		return c;
+	};
+	
+	btn3.onclick = f3_2;
+	btn4.onclick = f3_2;
+	
+	//3.즉시실행함수
+	(function(x, y){ /* alert("즉시실행함수 실행됨~!, 10 + 20 = " + (x+y) ); */ })(10, 20);
+</script>
+
+<script>
+	console.log(js);
+	document.getElementById("here").innerHTML = js;
+	var js = "자바스크립트";	//호이스팅: JavaScript는 실행 전에 선언된 변수를 맨 위로 끌어옴 
+	console.log(js);
+	here.innerHTML += "<br>" + js;
+	
+	function call4() {
+		here.innerHTML += "<br>" + js + ", " + sql;
+		var sql = "ORACLE 문법을 학습";
+		here.innerHTML += "<br>" + js + ", " + sql;
+		
+	}
+	
+	/* f1();
+	function f1() {
+		alert("함수 호이스팅됨~!");
+	} */
+	
+	var v1 = 10;
+	{
+		var v2 = 20;	//v2: 전역변수 ... 지역변수는 function 안에서만!
+		let v3 = 30;
+	}
+	function f2() { var v4 = 40; /* 지역변수: function 내부 */ }
+	console.log(v1 + ", " + v2);
+	console.log(v1 + ", " + v2);
+</script>
+
+<script>
+	var score = 100;	//전역변수(함수 외부)
+	const score4 = 400;
+	
+	var b1 = document.getElementById("btn1");
+	b1.onclick = function() {
+		var score2 = 200;	//지역변수
+		score3 = 300;	//전역변수(타입을 선언하지 않은 경우)
+	/*	score4 = 4000;	//error: 상수는 변경 불가 */
+		console.log("id로 접근하기 " + b1.innerHTML + ", score 합 = " + (score + score2 + score3 + score4));
+	};
+	
+	var b2 = document.querySelector("button:nth-of-type(2)")
+	b2.onclick = function() {
+		console.log("selector로 접근하기 " + b2.innerHTML + ", score 합 = " + (score + score3 + score4));
+	};
+	
+	var b3 = document.querySelector("button:nth-of-type(3)")
+	b3.onclick = function() {
+		var sum = 0;
+		for(let i=1; i<=10; i++) {	//let은 블록(for) 밖에서 접근 불가
+			sum += i;
+		}
+		console.log("1 ~ 10 합 = " + sum);
+		/* document.querySelector("#here").innerHTML += "1부터 " + (i-1) + "까지 합계는 " + sum + "입니다.<br>"; */
+	};
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="external2.js"></script>
+<script src="external3.js"></script>
+<script>
+	window.onload = function() { console.log("window onload -- 1"); };
+	
+	$(document).ready(f1);
+	$(f2);
+	$(f3);
+	$(()=>{ console.log("jQuery--4"); });
+	
+	function f1() { console.log("jQuery--1"); }
+	function f2() { console.log("jQuery--2"); }
+	function f3() { console.log("jQuery--3"); }
+</script>
+<script>
+	$(function() {
+		$("#btn1").click(function() {
+			//대상.함수(할 일)
+			$("h1").css("color", "red");
+		});
+		
+		$("#btn2").click(function() {
+			$("h1.b").css("background-color", "pink");
+		});
+		
+		$("input").css("width", "70px");
+		
+		$("#btn3").click(function() {
+			$("input[type='text']").val("값을 넣기");
+		});
+		
+		$("#btn4").on("click", f4);
+		
+		$("#btn5").on("click", f5);
+	});
+	
+	function f4() {
+		var dept = $("#dept option:selected").val();
+		alert(dept);
+	}
+	
+	function f5() {
+		var arr = [{ name:"네이버", link:"http://www.naver.com" },
+				   { name:"다음", link:"http://www.daum.net" },
+				   { name:"구글", link:"http://www.google.com" }];
+		
+		var str = "<ul>";
+		
+		$.each(arr, function(index, item) {
+			str += `<li><a href="${item.link}">${item.name}</a></li>`;
+		});
+		
+		$("#here").html(str + "</ul>");
+	}
+</script>
+</head>
+<body>
+  <h1>jQuery 라이브러리 사용하기1</h1>
+  <div id="here">
+    여기
+<!--     <ul>
+      <li><a href="http://www.naver.com">네이버</a></li>
+    </ul> -->
+  </div>
+  <h1 class="b">jQuery 라이브러리 사용하기2</h1>
+  <h2 class="b">h2 입니다~</h2>
+  <h1>jQuery 라이브러리 사용하기3</h1>
+  <button id="btn1">h1 스타일 변경</button>
+  <button id="btn2">h1 스타일 변경</button>
+  <button id="btn3">input[type=text]</button>
+  <button id="btn4">select 연습</button>
+  <button id="btn5">each 연습</button>
+  <hr>
+  <input type="text">
+  <input type="text">
+  <input type="text">
+  <input type="number">
+  <input type="password">
+  <hr>
+    <select id="dept">
+      <option value="100">개발부1</option>
+      <option>개발부2</option>
+      <option>개발부3</option>
+      <option>개발부4</option>
+      <option>개발부5</option>
+    </select>
+    <select>
+      <option>개발부1-1</option>
+      <option>개발부2-2</option>
+      <option>개발부3-3</option>
+      <option>개발부4-4</option>
+      <option>개발부5-5</option>
+    </select>
+  <hr>
+</body>
+</html>

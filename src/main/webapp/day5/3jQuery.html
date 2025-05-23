@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+  .greenColor {
+    border: 5px dotted green;
+    font-size: 30px;
+  }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+$(function() {
+	$("#btn1").on("click", f1);
+	$("#btn2").on("click", f2);
+	$("#btn3").on("click", f3);
+	$("#btn4").on("click", f4);
+	$("#btn5").on("click", f5);
+	$("#btn6").on("click", f6);
+	$("#btn7").on("click", f7);
+	$("#btn8").on("click", f8);
+	$("#btn9").on("click", f9);
+});
+
+function f1() {
+	var arr = [{ name:"네이버", link:"http://www.naver.com" },
+			   { name:"다음", link:"http://www.daum.net" },
+			   { name:"구글", link:"http://www.google.com" }];
+	
+	var str = "<ul>";
+	
+	$.each(arr, function(index, item) {
+		str += `<li><a href="${item.link}">${item.name}</a></li>`;
+	});
+	
+	$("#here").html(str + "</ul>");
+}
+
+function f2() {
+	$("h1").each(function(index, item) {
+		if(index%2==0) {
+			$(item).css("color", "red");
+		} else {
+			$(item).css("color", "blue");
+		}
+	});
+}
+
+function f3() {
+	$("h1:nth-of-type(odd)").css("background-color", "pink").css("width", "150px");
+	$("h1:nth-of-type(2n)").css("background-color", "skyblue").css("width", "150px");
+}
+
+function f4() {
+	$("h1:first-child").addClass("greenColor");
+}
+
+function f5() {
+	var obj1 = { name:"홍길동" };
+	obj1.age = 20;
+	var obj2 = { "주소":"마포구 연남동" };
+	$.extend(obj1, obj2, { phone:"010-1423-7896" });
+	console.log(obj1);
+}
+
+function f6() {
+	var obj = { "font-style":"italic", border:"2px solid gray", width:"150px" };
+	
+	$("h1").filter(function(index, item) {
+		var s = $(item).text();
+		return s == 'jQuery2' || s == 'jQuery3';
+	}).css(obj);
+}
+
+function f7() {
+	$("h1").filter(":nth-child(2n)").css("color", "pink").end()
+		   .filter(":nth-child(2n+1)").css("background-color", "beige");
+}
+
+function f8() {
+	$("h1").first().css("background-color", "beige");
+	$("h1").eq(0).css("color", "brown");
+	$("h1").last().css("background-color", "beige");
+	$("h1").eq(-1).css("color", "brown");
+}
+
+function f9() {
+	var str = `
+		<friends>
+		  <friend>
+		    <name>홍길동</name>
+		    <age>20</age>
+		  </friend>
+		  <friend>
+		    <name>이정헌</name>
+		    <age>27</age>
+		  </friend>
+		  <friend>
+		    <name>내친구</name>
+		    <age>25</age>
+		  </friend>
+		</friends>
+		`;
+	
+	var xmlObj = $.parseXML(str);
+	$(xmlObj).find("friend").each(function(index, element) {
+		var name = $(this/*element*/).find("name").text();
+		console.log(name);
+	});
+}
+</script>
+</head>
+<body>
+  <h1>jQuery1</h1>
+  <h1>jQuery2</h1>
+  <h1>jQuery3</h1>
+  <h1>jQuery4</h1>
+  <h1>jQuery5</h1>
+  <h1>jQuery6</h1>
+  <button id="btn1">배열1</button>
+  <button id="btn2">배열2</button>
+  <button id="btn3">배열3</button>
+  <button id="btn4">addClass</button>
+  <button id="btn5">extend</button>
+  <button id="btn6">filter</button>
+  <button id="btn7">end</button>
+  <button id="btn8">eq, first, last</button>
+  <button id="btn9">parseXML</button>
+  <div id="here">여기</div>
+</body>
+</html>
